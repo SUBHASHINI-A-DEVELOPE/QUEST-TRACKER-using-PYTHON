@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title%}Signup{% endblock %}
+{% block signupactive %}active{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% for msg in messages %}
+
+<div class="alert alert-dark  alert-dismissible fade show  " role="alert">
+    <strong>{{msg}}</strong>
+    <button type="button" class="btn-close   " data-bs-dismiss="alert" aria-label="Close">
+    </button>
+</div>
+
+{% endfor %}
+
+<div class="container signupscroll  px-5">
+    <form class="signup" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row-md-6">
+            <h1><label class=" txtcolor ">Sign Up</label></h1>
+        </div>
+
+        <div class="row-md-6 mt-2">
+            <img src="{% static 'img/img_avatar.png' %}" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="row-md-6 mt-2">
+            <div class="upload-btn-wrapper">
+                <button class="upbtn">Upload </button>
+                {% render_field form.profile type="file" %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mt-2">
+                <label class="form-label txtcolor"> First Name :</label>
+                {% render_field form.first_name class="form-control" type="text" %}
+            </div>
+            <div class="col mt-2">
+                <label class="form-label txtcolor"> Last Name :</label>
+                {% render_field form.last_name class="form-control" type="text" %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mt-4">
+                <label class="form-label txtcolor">User Name :</label>
+                {% render_field form.username class="form-control" type="text" %}
+            </div>
+            <div class="col mt-4">
+                <label class="form-label txtcolor">Email :</label>
+                {% render_field form.email class="form-control" placeholder="name@gmail.com" type="email" %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mt-4">
+                <label class="form-label txtcolor">Designation :</label>
+                {% render_field form.designation class="form-select" type="text" %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mt-4">
+                <label class="form-label txtcolor">Password :</label>
+                {% render_field form.password1 class="form-control" placeholder="Must contain at least 8 characters."
+                type="password" %}
+            </div>
+            <div class="col mt-4">
+                <label class="form-label txtcolor">Re-enter Password :</label>
+                {% render_field form.password2 class="form-control" type="password" %}
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <label class="form-check-label txtcolor">
+                Already have an account &nbsp; <a class="btn-danger" href="{% url 'login' %}">Login </a>
+            </label>
+        </div>
+
+        <div class="container mt-4 mb-4 text-center">
+            <button type="submit" class="glow-on-hover">Sign up</button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

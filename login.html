@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title%}Login{% endblock %}
+{% block signupactive %}active{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+
+{% for msg in messages %}
+
+<div class="alert alert-dark  alert-dismissible fade show  " role="alert">
+    <strong>{{msg}}</strong>
+    <button type="button" class="btn-close   " data-bs-dismiss="alert" aria-label="Close">
+    </button>
+</div>
+
+{% endfor %}
+
+<form class="row-cols-lg-3 my-5" method="POST">
+    {% csrf_token %}
+
+    <div class="container text-center">
+        <div class=" ">
+            <h1><label class="form-label txtcolor mb-5">Login to Access your Desk</label></h5>
+        </div>
+    </div>
+
+    <div class="container my-3">
+        <div class="row-md-6">
+            <label class="form-label txtcolor">User Name</label>
+            {% render_field form.username class="form-control" type="text" name="username" %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row-md-6">
+            <label class="form-label txtcolor">Password</label>
+            {% render_field form.password class="form-control" type="password" name="password" %}
+        </div>
+    </div>
+
+    <div class="container my-4">
+        <div class="  txtcolor ">
+            <label>
+                Don't have an account create <a class="a" href="/signup">One </a>
+            </label>
+            <div class="form-check my-4">
+                <input class="form-check-input" type="checkbox" value="" required>
+                <label class="form-check-label txtcolor">
+                    I agree to the terms and conditions
+                </label>
+                <div class="text-center my-4">
+                    <button type="submit" class="glow-on-hover">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}

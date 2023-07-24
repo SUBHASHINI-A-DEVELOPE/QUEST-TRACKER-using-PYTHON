@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title%}Quest{% endblock %}
+{% block questactive %}active{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="tab mt-4 my-1">
+    <a class="button-33 mb-4">Add Task</a>
+    <a class="button-33 mb-4" href="/viewtask">View Task</a>
+    <a class="button-33 mb-4" href="/viewdev">Developers</a>
+</div>
+
+{% for msg in messages %}
+
+<div class="alert alert-dark  alert-dismissible fade show  " role="alert">
+    <strong>{{msg}}</strong>
+    <button type="button" class="btn-close   " data-bs-dismiss="alert" aria-label="Close">
+    </button>
+</div>
+
+{% endfor %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="container col-5 px-5">
+        <div class="row-md-6">
+            <h5><label class="form-label txtcolor">Task Title :</label></h5>
+            {% render_field form.tasktitle class="form-control" type="text" %}
+        </div>
+    </div>
+
+    <div class="container  my-3 col-5 px-5">
+        <div class="row-md-6">
+            <h5> <label class="form-label txtcolor">Task Description :</label></h5>
+            {% render_field form.taskDesc class="form-control" type="text" %}
+        </div>
+    </div>
+
+    <div class="container  my-3 col-5 px-5">
+        <div class="row-md-6">
+            <h5> <label class="form-label txtcolor">Developer:</label></h5>
+            <select class="form-select" name="developer" for="dev">
+                <option id="dev">-----Select Developer-----</option>
+                {% for i in dev %}
+                <option id="dev" value="{{ i.username }}">{{ i.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="container my-3 col-5 px-5">
+        <div class="row-md-6">
+            <h5><label class="form-label txtcolor">Deadline :</label></h5>
+            {% render_field form.deadline class="form-control datetimepicker-input" %}
+        </div>
+    </div>
+
+    <div class="text-center my-4">
+        <button type="submit" class="button-33">Add to list</button>
+    </div>
+
+</form>
+
+{% endblock %}

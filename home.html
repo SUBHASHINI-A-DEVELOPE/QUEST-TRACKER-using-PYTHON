@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title%}Home{% endblock %}
+{% block homeactive %}active{% endblock %}
+{% load static %}
+{% block content %}
+
+<div class=" piccontainer">
+    <div class="textcontainer">
+        <h1 class="h1text">
+            Hi There,<br>
+            <h2 class="name">Welcome to &nbsp;<h class="h">Quest-Tracker</h>
+            </h2>
+        </h1><br>
+        <h4 class="h1text">
+            Make a business plan or list of resolutions <br>to achieve goals or achieve success
+        </h4>
+        <div class="aboutbtn">
+            <a class="button-85" href="/quest">
+                Quest
+            </a>
+        </div>
+    </div>
+    <img class="pic" src="{% static 'img/home_model.png' %}" alt="">
+</div>
+
+{% endblock %}
